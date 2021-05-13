@@ -2,7 +2,7 @@
 % Please edit documentation in R/gk_arrange.R
 \name{gk_arrange}
 \alias{gk_arrange}
-\title{Veri Setinin Duzenlenmesi}
+\title{Veri Setinin DuzenlenmesiPPP}
 \usage{
 gk_arrange(
   data,
@@ -46,5 +46,5 @@ sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini alir.}
 "gk_caltrim" fonksiyonuna girdi olacak duzenlenmis PERS dosyasini olusturur.
 }
 \description{
-Veri Setinin Duzenlenmesi
+Veri Setinin DuzenlenmesiPPP
 }

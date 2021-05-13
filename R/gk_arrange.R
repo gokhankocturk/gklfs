@@ -1,4 +1,4 @@
-#' Veri Setinin Duzenlenmesi
+#' Veri Setinin DuzenlenmesiPPP
 #'
 #' @param data Duzenlenmemis veri seti. Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
 #' degiskenlerde duzenlemeler yapiliyor. Ayrica "gk_caltrim" fonksiyonunda kalibrasyon icin kullanilacak
