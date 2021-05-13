@@ -1,0 +1,73 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# gklfs
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+"gklfs" paketi ile Hanehalkı İşgücü Araştırması veri setinin, kullanıcı tarafından belirlenen
+kalibrasyon kriterlerine göre kalibre edilerek nihai ağırlıkların hesaplamaları yapılmaktadır. 
+
+Pakette 3 adet fonksiyon bulunmaktadır;
+1. "gk_arrange" : Veri seti düzenlenerek kalibrasyon ve trimming işlemlerine hazır hale getirilmektedir.
+2. "gk_check" : Veri setinde eksik veya yanlış girilen verilen kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.
+3. "gk_caltrim" : Kullanıcı tarafından belirlenen kriterlere göre kalibrasyon ve trimming işlemleri yapılmaktadır.
+
+## Paketi Yükleme
+
+Paketin güncel versiyonunu [GitHub](https://github.com/) üzerinden aşağıdaki komutla indirebilirsiniz:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("gokhankocturk/gklfs")
+```
+
+## Örnek 1:
+
+data_arranged <- gk_arrange(data,
+                            proj_yascins,
+                            proj_il,
+                            proj_nutskirkent,
+                            proj_hhbkirkent,
+                            cinsiyet = "CINSIYET",
+                            birimno = "BIRIMNO",
+                            yas = "YAS",
+                            hhbsay = 9,
+                            hhbkirkent = TRUE)
+
+
+## Örnek 2:
+
+gk_check(data_arranged)
+
+
+## Örnek 3:
+
+data_calibrated <- gk_caltrim(data,
+                              calyap = TRUE,
+                              calsay = 8,
+                              trimyap = TRUE,
+                              trimsay = 4,
+                              hhbsay = 9,
+                              hhbkirkent = TRUE,
+                              yascinsiyet = TRUE,
+                              il = TRUE,
+                              nutskirkent = TRUE,
+                              kirnufus = 9000000,
+                              kentnufus = 70000000)
+
+
+
