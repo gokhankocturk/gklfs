@@ -11,12 +11,13 @@
 tarafından belirlenen kalibrasyon kriterlerine göre kalibre edilerek
 nihai ağırlıkların hesaplamaları yapılmaktadır.
 
-Pakette 3 adet fonksiyon bulunmaktadır; 1. “gk\_arrange” : Veri seti
-düzenlenerek kalibrasyon ve trimming işlemlerine hazır hale
-getirilmektedir. 2. “gk\_check” : Veri setinde eksik veya yanlış girilen
-verilen kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir. 3.
-“gk\_caltrim” : Kullanıcı tarafından belirlenen kriterlere göre
-kalibrasyon ve trimming işlemleri yapılmaktadır.
+Pakette 3 adet fonksiyon bulunmaktadır;  
+1\. “gk\_arrange” : Veri seti düzenlenerek kalibrasyon ve trimming
+işlemlerine hazır hale getirilmektedir.  
+2\. “gk\_check” : Veri setinde eksik veya yanlış girilen verilen
+kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.. “gk\_caltrim”
+: Kullanıcı tarafından belirlenen kriterlere göre kalibrasyon ve
+trimming işlemleri yapılmaktadır.
 
 ## Paketi Yükleme
 

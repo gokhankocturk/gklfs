@@ -21,9 +21,9 @@ knitr::opts_chunk$set(
 "gklfs" paketi ile Hanehalkı İşgücü Araştırması veri setinin, kullanıcı tarafından belirlenen
 kalibrasyon kriterlerine göre kalibre edilerek nihai ağırlıkların hesaplamaları yapılmaktadır. 
 
-Pakette 3 adet fonksiyon bulunmaktadır;
-1. "gk_arrange" : Veri seti düzenlenerek kalibrasyon ve trimming işlemlerine hazır hale getirilmektedir.
-2. "gk_check" : Veri setinde eksik veya yanlış girilen verilen kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.
+Pakette 3 adet fonksiyon bulunmaktadır;  
+1. "gk_arrange" : Veri seti düzenlenerek kalibrasyon ve trimming işlemlerine hazır hale getirilmektedir.  
+2. "gk_check" : Veri setinde eksik veya yanlış girilen verilen kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.\newline
 3. "gk_caltrim" : Kullanıcı tarafından belirlenen kriterlere göre kalibrasyon ve trimming işlemleri yapılmaktadır.
 
 ## Paketi Yükleme
@@ -56,9 +56,9 @@ gk_check(data_arranged)
 
 ## Örnek 3:
 
-data_calibrated <- gk_caltrim(data,
-                              calyap = TRUE,
-                              calsay = 8,
+data_calibrated <- gk_caltrim(data, 
+                              calyap = TRUE, 
+                              calsay = 8, 
                               trimyap = TRUE,
                               trimsay = 4,
                               hhbsay = 9,
