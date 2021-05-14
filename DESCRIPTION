@@ -1,5 +1,5 @@
 Package: gklfs
-Title: What the Package Does (One Line, Title Case)
+Title: LFS veri setinin agirliklandirmasi
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -7,7 +7,10 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Hanehalki İsgücü Arastirmasi veri seti ilgili detaylarda duzenlenmektedir. Duzenlenmis
+veri setinde eksik veya yanlis girilen degerlerin olup olmadigi kontrol edildikten sonra
+kalibrasyon ve trimming islemlerine gecilmektedir. Son olarak elde edilen agirliklar ve temel degiskenlerin
+yer aldigi veri seti cikti olarak verilmektedir.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
