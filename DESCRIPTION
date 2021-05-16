@@ -7,10 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Hanehalki İsgücü Arastirmasi veri seti ilgili detaylarda duzenlenmektedir. Duzenlenmis
-veri setinde eksik veya yanlis girilen degerlerin olup olmadigi kontrol edildikten sonra
-kalibrasyon ve trimming islemlerine gecilmektedir. Son olarak elde edilen agirliklar ve temel degiskenlerin
-yer aldigi veri seti cikti olarak verilmektedir.
+Description: Hanehalki Isgucu verilerinin agirliklandirma islemleri yapilmaktadir.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
