@@ -3,6 +3,7 @@
 export(gk_arrange)
 export(gk_caltrim)
 export(gk_check)
+export(gk_variance)
 import(data.table)
 import(dplyr)
 import(magrittr)

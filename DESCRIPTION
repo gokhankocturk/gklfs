@@ -19,6 +19,7 @@ Imports:
     magrittr,
     rlang,
     stringr,
-    tidyr
+    tidyr,
+    ReGenesees
 URL: https://github.com/gokhankocturk/gklfs
 BugReports: https://github.com/gokhankocturk/gklfs/issues
