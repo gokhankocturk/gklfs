@@ -1,18 +1,20 @@
-#' Title
+#' CV, Standart Hata, Deff Hesaplamalari
 #'
 #' @param data "gk_caltrim" fonksiyonu sonrasinda elde edilen ozet veri setinin kullanilmasi gerekmektedir.
 #' @param yas Yas degiskeni
 #' @param cinsiyet Cinsiyet degiskeni
 #' @param faktor Kalibrasyon ve trimming sonrasi elde edilen nihai agirliklar.
-#' @param duzfakto Cevapsizlik duzeltmeleri sonrasinda kalibrasyona girecek agirliklar.
+#' @param duzfakto Cevapsizlik duzeltmeleri sonrasinda kalibrasyona giren agirliklar.
 #' @param ibbs2  IBBS2 degiskeni
 #' @param kirkent Kirkent degiskeni
 #' @param stratum Bloklarin (2 veya 3 blok) birlestirilmesiyle olusturulmus yeni tabakalar
 #' @param ilkayitno Ilkayitno degiskeni
 #' @param calmodel Kalibrasyon ve trimmingde kullandigimiz model. Ornegin "KIR_KENT:IBBS_2 + YASGR:CINSIYET + HHB - 1"
+#' Burada tanimlanan modele gore standart hata degerleri ve ona bagli olarak da CV ve deff degerleri az da olsa
+#' degismektedir. Bu sebeple, modelin dogru tanimlanmasi onemlidir.
 #' @param varyans Toplama iliskin varyans hesabi icin "Total", ortalamaya iliskin varyans hesabi icin "Mean" degerini alir.
 #'
-#' @return Varyans hesaplamalari sonucunda IBBS2 bazinda elde edilen sonuclari verir.
+#' @return IBBS2 bazinda toplam, ortalama, CV, standart hata, guven araliklari ve deff degerlerini cikti olarak verir.
 #' @export
 #'
 #' @examples

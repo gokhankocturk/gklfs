@@ -1,27 +1,29 @@
 #' Kalibrasyon & Trim
 #'
 #'
-#' @param data Duzenlenmis, dummyleri olusturulmus veri seti. "gk_arrange" fonksiyonundan
-#' elde edilen cikti kullanilabilir.
+#' @param data Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti.
+#' gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.
 #' @param calyap Kalibrasyon yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
-#' @param calsay Kalibrasyon sayisi
+#' @param calsay Kalibrasyon dongu sayisi
 #' @param trimyap Trim yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
-#' @param trimsay Trim sayisi
+#' @param trimsay Trim dongu sayisi
 #' @param hhbsay Hanehalki buyuklugune gore olusturulacak grup sayisi. Ornegin
 #' "hhbsay = 4" girildiginde hanehalki buyuklugu gruplari 1, 2, 3, 4+ seklinde olusacaktir.
 #' gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli
-#' olduğunda dummy uyusmazligi nedeniyle program hata verecektir.
+#' olduğunda dummy uyusmazligi nedeniyle program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
+#' ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.
 #' @param hhbkirkent HHB * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 #' sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini alir. "gk_arrange"
 #' fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli olduğunda dummy uyusmazligi
 #' nedeniyle program hata verecektir. Ornegin "gk_arrange" fonksiyonu icerisinde "hhbkirkent = TRUE"
 #' olarak tanimlandiginda dummyler "D_hhb_kk_1_2" seklinde olusturulurken "gk_caltrim" fonksiyonu
 #' icerisinde "hhbkirkent = FALSE" olarak tanimlanirsa dummyler "D_hhb_1" seklinde olusacagi icin
-#' program hata verecektir.
+#' program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
+#' ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.
 #' @param yascinsiyet YAS * CINSIYET'e gore kalibrasyon yapilmasi isteniyorsa TRUE,
 #' YAS * CINSIYET'e gore kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir.
 #' @param il IL'e gore kalibrasyon yapilmasi isteniyorsa TRUE, IL'e gore kalibrasyon
-#' yapilmasi istemiyorsa FALSE degerini alir.
+#' yapilmasi istenmiyorsa FALSE degerini alir.
 #' @param nutskirkent NUTS2 * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 #' NUTS2 * KIRKENT crossunda kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir.
 #' @param kirnufus Projekte KIR toplam nufusu

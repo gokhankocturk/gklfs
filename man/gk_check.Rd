@@ -7,10 +7,12 @@
 gk_check(data)
 }
 \arguments{
-\item{data}{Check edilecek veri seti}
+\item{data}{Kontrol edilecek veri seti. Kalibrasyon oncesinde DUZFAKTO, CINSIYET, ILKAYITNO,
+NUTS2*KIRKENT ve HHB_KIRKENT degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
+kontrol etmektedir.}
 }
 \value{
-Kontrol sonrasi TRUE veya FALSE ciktisini verir
+Kontrol sonrasinda TRUE veya FALSE ciktisini verir. Ekranda kontrol sonuclarini mesajla gosterir.
 }
 \description{
 Veri Setinin Kontrolu

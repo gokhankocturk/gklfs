@@ -20,21 +20,22 @@ gk_caltrim(
 )
 }
 \arguments{
-\item{data}{Duzenlenmis, dummyleri olusturulmus veri seti. "gk_arrange" fonksiyonundan
-elde edilen cikti kullanilabilir.}
+\item{data}{Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti.
+gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.}
 
 \item{calyap}{Kalibrasyon yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.}
 
-\item{calsay}{Kalibrasyon sayisi}
+\item{calsay}{Kalibrasyon dongu sayisi}
 
 \item{trimyap}{Trim yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.}
 
-\item{trimsay}{Trim sayisi}
+\item{trimsay}{Trim dongu sayisi}
 
 \item{hhbsay}{Hanehalki buyuklugune gore olusturulacak grup sayisi. Ornegin
 "hhbsay = 4" girildiginde hanehalki buyuklugu gruplari 1, 2, 3, 4+ seklinde olusacaktir.
 gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli
-olduğunda dummy uyusmazligi nedeniyle program hata verecektir.}
+olduğunda dummy uyusmazligi nedeniyle program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
+ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.}
 
 \item{hhbkirkent}{HHB * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini alir. "gk_arrange"
@@ -42,13 +43,14 @@ fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli olduğunda dum
 nedeniyle program hata verecektir. Ornegin "gk_arrange" fonksiyonu icerisinde "hhbkirkent = TRUE"
 olarak tanimlandiginda dummyler "D_hhb_kk_1_2" seklinde olusturulurken "gk_caltrim" fonksiyonu
 icerisinde "hhbkirkent = FALSE" olarak tanimlanirsa dummyler "D_hhb_1" seklinde olusacagi icin
-program hata verecektir.}
+program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
+ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.}
 
 \item{yascinsiyet}{YAS * CINSIYET'e gore kalibrasyon yapilmasi isteniyorsa TRUE,
 YAS * CINSIYET'e gore kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir.}
 
 \item{il}{IL'e gore kalibrasyon yapilmasi isteniyorsa TRUE, IL'e gore kalibrasyon
-yapilmasi istemiyorsa FALSE degerini alir.}
+yapilmasi istenmiyorsa FALSE degerini alir.}
 
 \item{nutskirkent}{NUTS2 * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 NUTS2 * KIRKENT crossunda kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir.}

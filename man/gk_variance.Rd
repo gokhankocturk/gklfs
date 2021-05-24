@@ -2,7 +2,7 @@
 % Please edit documentation in R/gk_variance.R
 \name{gk_variance}
 \alias{gk_variance}
-\title{Title}
+\title{CV, Standart Hata, Deff Hesaplamalari}
 \usage{
 gk_variance(
   data,
@@ -27,7 +27,7 @@ gk_variance(
 
 \item{faktor}{Kalibrasyon ve trimming sonrasi elde edilen nihai agirliklar.}
 
-\item{duzfakto}{Cevapsizlik duzeltmeleri sonrasinda kalibrasyona girecek agirliklar.}
+\item{duzfakto}{Cevapsizlik duzeltmeleri sonrasinda kalibrasyona giren agirliklar.}
 
 \item{ibbs2}{IBBS2 degiskeni}
 
@@ -37,13 +37,15 @@ gk_variance(
 
 \item{ilkayitno}{Ilkayitno degiskeni}
 
-\item{calmodel}{Kalibrasyon ve trimmingde kullandigimiz model. Ornegin "KIR_KENT:IBBS_2 + YASGR:CINSIYET + HHB - 1"}
+\item{calmodel}{Kalibrasyon ve trimmingde kullandigimiz model. Ornegin "KIR_KENT:IBBS_2 + YASGR:CINSIYET + HHB - 1"
+Burada tanimlanan modele gore standart hata degerleri ve ona bagli olarak da CV ve deff degerleri az da olsa
+degismektedir. Bu sebeple, modelin dogru tanimlanmasi onemlidir.}
 
 \item{varyans}{Toplama iliskin varyans hesabi icin "Total", ortalamaya iliskin varyans hesabi icin "Mean" degerini alir.}
 }
 \value{
-Varyans hesaplamalari sonucunda IBBS2 bazinda elde edilen sonuclari verir.
+IBBS2 bazinda toplam, ortalama, CV, standart hata, guven araliklari ve deff degerlerini cikti olarak verir.
 }
 \description{
-Title
+CV, Standart Hata, Deff Hesaplamalari
 }

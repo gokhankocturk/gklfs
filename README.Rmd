@@ -24,7 +24,8 @@ kalibrasyon kriterlerine göre kalibre edilerek nihai ağırlıkların hesaplama
 Pakette 3 adet fonksiyon bulunmaktadır;  
 1. "gk_arrange" : Veri seti düzenlenerek kalibrasyon ve trimming işlemlerine hazır hale getirilmektedir.  
 2. "gk_check" : Veri setinde eksik veya yanlış girilen verilerin kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.  
-3. "gk_caltrim" : Kullanıcı tarafından belirlenen kriterlere göre kalibrasyon ve trimming işlemleri yapılmaktadır.
+3. "gk_caltrim" : Kullanıcı tarafından belirlenen kriterlere göre kalibrasyon ve trimming işlemleri yapılmaktadır.  
+4. "gk_variance" : Kalibrasyon sonrası elde edilen ağırlıklar ve çalışmanın modeli dikkate alınarak Taylor Linearization metoduyla varyans hesaplamaları yapılmaktadır.
 
 
 ## Paketi Yükleme

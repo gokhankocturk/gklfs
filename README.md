@@ -17,7 +17,10 @@ işlemlerine hazır hale getirilmektedir.
 2\. “gk\_check” : Veri setinde eksik veya yanlış girilen verilerin
 kontrolü yapılarak TRUE veya FALSE çıktısı vermektedir.  
 3\. “gk\_caltrim” : Kullanıcı tarafından belirlenen kriterlere göre
-kalibrasyon ve trimming işlemleri yapılmaktadır.
+kalibrasyon ve trimming işlemleri yapılmaktadır.  
+4\. “gk\_variance” : Kalibrasyon sonrası elde edilen ağırlıklar ve
+çalışmanın modeli dikkate alınarak Taylor Linearization metoduyla
+varyans hesaplamaları yapılmaktadır.
 
 ## Paketi Yükleme
 

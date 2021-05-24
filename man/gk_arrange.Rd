@@ -18,9 +18,19 @@ gk_arrange(
 )
 }
 \arguments{
-\item{data}{Duzenlenmemis veri seti. Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
-degiskenlerde duzenlemeler yapiliyor. Ayrica "gk_caltrim" fonksiyonunda kalibrasyon icin kullanilacak
-dummy degiskenler ve projekte populasyonlari da veri setine ekleniyor.}
+\item{data}{Duzenlenmemis HIA veri seti. Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
+degiskenlerde duzenlemeler yapilarak dummy degiskenler olusturulmaktadir. Ayrica "gk_caltrim"
+fonksiyonunda kalibrasyon icin kullanilmak uzere projekte populasyonlari da veri setine eklenmektedir.
+NOT: Veri setinde yer alacak degiskenlerin standart bir formatta olmasi gerekmektedir. Ornegin;
+ILKAYITNO: veri tipi character ; 01, 02, 03 seklinde
+IBBS_1: veri tipi character ; TR1, TR2 seklinde
+IBBS_2: veri tipi character ; TR10, TR21 seklinde
+KIR_KENT: veri tipi numeric ; 1, 2 seklinde
+CINSIYET: veri tipi numeric ; 1, 2 seklinde
+FAKTOR: veri tipi numeric
+HHB: veri tipi numeric ; 1, 2 ,3 seklinde
+duzfakto: veri tipi numeric
+fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde}
 
 \item{proj_yascins}{Yas - Cinsiyet projekte oranlari (tek satir halinde)}
 
@@ -31,19 +41,20 @@ dummy degiskenler ve projekte populasyonlari da veri setine ekleniyor.}
 \item{proj_hhbkirkent}{HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
 kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)}
 
-\item{cinsiyet}{Cinsiyet sutun adi (veri tipi numeric: 1, 2 seklinde)}
+\item{cinsiyet}{Cinsiyet degiskeni icin kullanilacak sutun adi (veri tipi numeric: 1, 2 seklinde)}
 
 \item{birimno}{Birimno sutun adi (veri tipi numeric: 325069, 325070 seklinde)}
 
 \item{yas}{Yas sutun adi (veri tipi numeric: 26, 35 seklinde)}
 
-\item{hhbsay}{Hanehalki buyuklugunun kac grup olacagi}
+\item{hhbsay}{Hanehalki buyuklugu degiskeninin kac grup olacagini belirtmektedir. Ornegin "hhbsay = 4"
+degeri kullanildiginda kalibrasyon islemleri 1, 2, 3 ve 4+ hanehalki buyuklugu gruplarinda yapilacaktir.}
 
 \item{hhbkirkent}{HHB * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
-sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini alir.}
+sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini almaktadir.}
 }
 \value{
-"gk_caltrim" fonksiyonuna girdi olacak duzenlenmis PERS dosyasini olusturur.
+"gk_caltrim" fonksiyonuna girdi olacak duzenlenmis PERS dosyasini cikti olarak verir.
 }
 \description{
 Veri Setinin Duzenlenmesi

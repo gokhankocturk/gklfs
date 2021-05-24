@@ -1,8 +1,10 @@
 #' Veri Setinin Kontrolu
 #'
-#' @param data Check edilecek veri seti
+#' @param data Kontrol edilecek veri seti. Kalibrasyon oncesinde DUZFAKTO, CINSIYET, ILKAYITNO,
+#' NUTS2*KIRKENT ve HHB_KIRKENT degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
+#' kontrol etmektedir.
 #'
-#' @return Kontrol sonrasi TRUE veya FALSE ciktisini verir
+#' @return Kontrol sonrasinda TRUE veya FALSE ciktisini verir. Ekranda kontrol sonuclarini mesajla gosterir.
 
 #' @examples
 #' control <- gk_check(mtcars);
