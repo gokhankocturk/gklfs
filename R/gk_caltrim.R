@@ -1960,7 +1960,7 @@ gk_caltrim <- function(data,
   ##### kontrol_yc #####
   kontrol_yc <- list()
   xxx <- ozet_veri %>% group_by(AG) %>% summarize(toplam_w = sum(w), toplam_n = n())
-  xxx$hia_oran <- prop.table(d$toplam_w)
+  xxx$hia_oran <- prop.table(xxx$toplam_w)
 
   proj_yc <- proj_yascins
   yyy <- proj_yc %>% pivot_longer(cols = names(proj_yc), names_to = "proj", values_to = "proj_oran")
