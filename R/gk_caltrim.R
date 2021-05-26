@@ -1949,7 +1949,31 @@ gk_caltrim <- function(data,
 
   ozet_veri[ , PF_ilkayitno := paste0("PF_il_", ILKAYITNO)]
 
+  # gk_caltrim fonksiyonu sonrasinda; nihai agirliklarin oldugu veri seti, kontrol tablolari, min-max
+  # degerleri, ikfa4, durum dagilimlari gibi farkli sonuclarin yer aldıgı "SONUCLAR" adinda bir liste
+  # olusturuyoruz. Burada bahsedilen her ciktiyi SONUCLAR listesinin icerisine kaydedecegiz ve fonksiyon
+  # ciktisi olarak bu ciktiyi verecegiz. Dolayisiyla kullanici "liste" formatinda bir sonuc elde ederek
+  # istedigi veri setine veya tabloya "SONUCLAR$veri, SONUCLAR$kontrol_yc$min, SONUCLAR$kontrol_yc$max
+  # seklinde ulasabilecektir. O yuzden baslangicta bos bir "SONUCLAR" listesi olusturuyoruz.
+  SONUCLAR <- list()
+
+  ##### kontrol_yc #####
+  kontrol_yc <- list()
+  xxx <- ozet_veri %>% group_by(AG) %>% summarize(toplam_w = sum(w), toplam_n = n())
+  xxx$hia_oran <- prop.table(d$toplam_w)
+
+  proj_yc <- proj_yascins
+  yyy <- proj_yc %>% pivot_longer(cols = names(proj_yc), names_to = "proj", values_to = "proj_oran")
+
+  zzz <- xxx %>% left_join(yyy, by = c("AG" = "proj"))
+  zzz$hia_proj_oran <- zzz$hia_oran / zzz$proj_oran
+
+  kontrol_yc$tablo <- zzz
+  kontrol_yc$min <- min(zzz$hia_proj_oran)
+  kontrol_yc$max <- max(zzz$hia_proj_oran)
+
+  SONUCLAR$kontrol_yc <- kontrol_yc
 
 
-  return(ozet_veri)
+  return(SONUCLAR)
 }
