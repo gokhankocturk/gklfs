@@ -1936,7 +1936,19 @@ gk_caltrim <- function(data,
   pers_h[KIR_KENT == 2, w := duzfakto_carpan_kent * w]
 
   pers_h[, w_old := w]
-  ozet_veri <- pers_h %>% select("ILKAYITNO", "ALTORNEK", "BLOKNO", "bulten", "IBBS_1", "IBBS_2", "KIR_KENT", "DURUM", "IKFA4", "hhb", "fk_cinsi", "gender", "fk_yas", "age_g", "AG", "duzfakto", "w")
+  ozet_veri <- pers_h %>% select("ILKAYITNO", "ALTORNEK", "BLOKNO", "bulten", "IBBS_1", "IBBS_2", "nur", "KIR_KENT", "DURUM", "IKFA4", "hhb", "fk_cinsi", "gender", "fk_yas", "age_g", "AG", "duzfakto", "w")
+
+  if(hhbkirkent == TRUE) {
+    ozet_veri[KIR_KENT == 1, PF_hhbkirkent := paste0("PF_hhb_kk_", KIR_KENT, "_", hhb)]
+    ozet_veri[KIR_KENT == 2, PF_hhbkirkent := paste0("PF_hhb_kk_", KIR_KENT, "_", hhb)]
+  }
+
+  if(hhbkirkent == FALSE) {
+    ozet_veri[ , PF_hhbkirkent := paste0("PF_hhb_", hhb)]
+  }
+
+  ozet_veri[ , PF_ilkayitno := paste0("PF_il_", ILKAYITNO)]
+
 
 
   return(ozet_veri)
