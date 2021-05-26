@@ -6,6 +6,10 @@
 \usage{
 gk_caltrim(
   data,
+  proj_yascins,
+  proj_il,
+  proj_nutskirkent,
+  proj_hhbkirkent,
   calyap = TRUE,
   calsay = 8,
   trimyap = TRUE,
