@@ -1936,7 +1936,7 @@ gk_caltrim <- function(data,
   pers_h[KIR_KENT == 2, w := duzfakto_carpan_kent * w]
 
   pers_h[, w_old := w]
-  ozet_veri <- pers_h %>% select("ILKAYITNO", "ALTORNEK", "BLOKNO", "bulten", "IBBS_1", "IBBS_2", "KIR_KENT", "DURUM", "IKFA4", "hhb", "hhsize", "fk_cinsi", "gender", "fk_yas", "age_g", "AG", "duzfakto", "w")
+  ozet_veri <- pers_h %>% select("ILKAYITNO", "ALTORNEK", "BLOKNO", "bulten", "IBBS_1", "IBBS_2", "KIR_KENT", "DURUM", "IKFA4", "hhb", "fk_cinsi", "gender", "fk_yas", "age_g", "AG", "duzfakto", "w")
 
 
   return(ozet_veri)
