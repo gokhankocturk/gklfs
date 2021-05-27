@@ -1959,6 +1959,7 @@ gk_caltrim <- function(data,
   # istedigi veri setine veya tabloya "SONUCLAR$veri, SONUCLAR$kontrol_yc$min, SONUCLAR$kontrol_yc$max
   # seklinde ulasabilecektir. O yuzden baslangicta bos bir "SONUCLAR" listesi olusturuyoruz.
   SONUCLAR <- list()
+  SONUCLAR$veri <- ozet_veri
 
   ##### kontrol_yc #####
   kontrol_yc <- list()
@@ -1991,11 +1992,64 @@ gk_caltrim <- function(data,
   zzz_il <- xxx_il %>% left_join(yyy_il, by = c("IL_proj" = "proj"))
   zzz_il$hia_proj_oran <- zzz_il$hia_oran / zzz_il$proj_oran
 
+  # IL_proj sutunu ortalarda bir yerdeydi. Onu en basa almak icin bu komutu kullaniyoruz.
+  zzz_il <- zzz_il %>% relocate(IL_proj)
+
   kontrol_il$tablo <- zzz_il
   kontrol_il$min <- min(zzz_il$hia_proj_oran)
   kontrol_il$max <- max(zzz_il$hia_proj_oran)
 
   SONUCLAR$kontrol_il <- kontrol_il
+
+  ##### kontrol_nur #####
+  kontrol_nur <- list()
+  xxx_nur <- ozet_veri %>% group_by(KIR_KENT, IBBS_2) %>% summarize(toplam_w = sum(w), toplam_n = n())
+  xxx_nur$hia_oran <- prop.table(xxx_nur$toplam_w)
+
+  proj_nur <- proj_nutskirkent
+  proj_nur <- proj_nur %>% select(-PF_rur_01)
+  yyy_nur <- proj_nur %>% pivot_longer(cols = names(proj_nur), names_to = "proj", values_to = "proj_oran")
+
+  xxx_nur <- as.data.table(xxx_nur)
+  xxx_nur[IBBS_2 == "TR10", IBBS_2_KOD := "01"]
+  xxx_nur[IBBS_2 == "TR21", IBBS_2_KOD := "02"]
+  xxx_nur[IBBS_2 == "TR22", IBBS_2_KOD := "03"]
+  xxx_nur[IBBS_2 == "TR31", IBBS_2_KOD := "04"]
+  xxx_nur[IBBS_2 == "TR32", IBBS_2_KOD := "05"]
+  xxx_nur[IBBS_2 == "TR33", IBBS_2_KOD := "06"]
+  xxx_nur[IBBS_2 == "TR41", IBBS_2_KOD := "07"]
+  xxx_nur[IBBS_2 == "TR42", IBBS_2_KOD := "08"]
+  xxx_nur[IBBS_2 == "TR51", IBBS_2_KOD := "09"]
+  xxx_nur[IBBS_2 == "TR52", IBBS_2_KOD := "10"]
+  xxx_nur[IBBS_2 == "TR61", IBBS_2_KOD := "11"]
+  xxx_nur[IBBS_2 == "TR62", IBBS_2_KOD := "12"]
+  xxx_nur[IBBS_2 == "TR63", IBBS_2_KOD := "13"]
+  xxx_nur[IBBS_2 == "TR71", IBBS_2_KOD := "14"]
+  xxx_nur[IBBS_2 == "TR72", IBBS_2_KOD := "15"]
+  xxx_nur[IBBS_2 == "TR81", IBBS_2_KOD := "16"]
+  xxx_nur[IBBS_2 == "TR82", IBBS_2_KOD := "17"]
+  xxx_nur[IBBS_2 == "TR83", IBBS_2_KOD := "18"]
+  xxx_nur[IBBS_2 == "TR90", IBBS_2_KOD := "19"]
+  xxx_nur[IBBS_2 == "TRA1", IBBS_2_KOD := "20"]
+  xxx_nur[IBBS_2 == "TRA2", IBBS_2_KOD := "21"]
+  xxx_nur[IBBS_2 == "TRB1", IBBS_2_KOD := "22"]
+  xxx_nur[IBBS_2 == "TRB2", IBBS_2_KOD := "23"]
+  xxx_nur[IBBS_2 == "TRC1", IBBS_2_KOD := "24"]
+  xxx_nur[IBBS_2 == "TRC2", IBBS_2_KOD := "25"]
+  xxx_nur[IBBS_2 == "TRC3", IBBS_2_KOD := "26"]
+
+  xxx_nur[KIR_KENT == 1, NUR_proj := paste0("PF_rur_", IBBS_2_KOD)]
+  xxx_nur[KIR_KENT == 2, NUR_proj := paste0("PF_urb_", IBBS_2_KOD)]
+  xxx_nur <- xxx_nur %>% relocate(NUR_proj, IBBS_2_KOD)
+
+  zzz_nur <- xxx_nur %>% left_join(yyy_nur, by = c("NUR_proj" = "proj"))
+  zzz_nur$hia_proj_oran <- zzz_nur$hia_oran / zzz_nur$proj_oran
+
+  kontrol_nur$tablo <- zzz_nur
+  kontrol_nur$min <- min(zzz_nur$hia_proj_oran)
+  kontrol_nur$max <- max(zzz_nur$hia_proj_oran)
+
+  SONUCLAR$kontrol_nur <- kontrol_nur
 
   return(SONUCLAR)
 }
