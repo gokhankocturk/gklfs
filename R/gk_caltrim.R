@@ -2007,7 +2007,7 @@ gk_caltrim <- function(data,
   xxx_nur$hia_oran <- prop.table(xxx_nur$toplam_w)
 
   proj_nur <- proj_nutskirkent
-  proj_nur <- proj_nur %>% select(-PF_rur_01)
+  # proj_nur <- proj_nur %>% select(-PF_rur_01)
   yyy_nur <- proj_nur %>% pivot_longer(cols = names(proj_nur), names_to = "proj", values_to = "proj_oran")
 
   xxx_nur <- as.data.table(xxx_nur)
