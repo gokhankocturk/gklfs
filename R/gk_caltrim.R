@@ -1949,6 +1949,9 @@ gk_caltrim <- function(data,
 
   ozet_veri[ , PF_ilkayitno := paste0("PF_il_", ILKAYITNO)]
 
+  ########################## SONUCLAR #########################################
+  ########################## SONUCLAR #########################################
+
   # gk_caltrim fonksiyonu sonrasinda; nihai agirliklarin oldugu veri seti, kontrol tablolari, min-max
   # degerleri, ikfa4, durum dagilimlari gibi farkli sonuclarin yer aldıgı "SONUCLAR" adinda bir liste
   # olusturuyoruz. Burada bahsedilen her ciktiyi SONUCLAR listesinin icerisine kaydedecegiz ve fonksiyon
@@ -1959,21 +1962,40 @@ gk_caltrim <- function(data,
 
   ##### kontrol_yc #####
   kontrol_yc <- list()
-  xxx <- ozet_veri %>% group_by(AG) %>% summarize(toplam_w = sum(w), toplam_n = n())
-  xxx$hia_oran <- prop.table(xxx$toplam_w)
+  xxx_yc <- ozet_veri %>% group_by(AG) %>% summarize(toplam_w = sum(w), toplam_n = n())
+  xxx_yc$hia_oran <- prop.table(xxx_yc$toplam_w)
 
   proj_yc <- proj_yascins
-  yyy <- proj_yc %>% pivot_longer(cols = names(proj_yc), names_to = "proj", values_to = "proj_oran")
+  yyy_yc <- proj_yc %>% pivot_longer(cols = names(proj_yc), names_to = "proj", values_to = "proj_oran")
 
-  zzz <- xxx %>% left_join(yyy, by = c("AG" = "proj"))
-  zzz$hia_proj_oran <- zzz$hia_oran / zzz$proj_oran
+  zzz_yc <- xxx_yc %>% left_join(yyy_yc, by = c("AG" = "proj"))
+  zzz_yc$hia_proj_oran <- zzz_yc$hia_oran / zzz_yc$proj_oran
 
-  kontrol_yc$tablo <- zzz
-  kontrol_yc$min <- min(zzz$hia_proj_oran)
-  kontrol_yc$max <- max(zzz$hia_proj_oran)
+  kontrol_yc$tablo <- zzz_yc
+  kontrol_yc$min <- min(zzz_yc$hia_proj_oran)
+  kontrol_yc$max <- max(zzz_yc$hia_proj_oran)
 
   SONUCLAR$kontrol_yc <- kontrol_yc
 
+  ##### kontrol_il #####
+  kontrol_il <- list()
+  xxx_il <- ozet_veri %>% group_by(ILKAYITNO) %>% summarize(toplam_w = sum(w), toplam_n = n())
+  xxx_il$hia_oran <- prop.table(xxx_il$toplam_w)
+
+  proj_ill <- proj_il
+  yyy_il <- proj_ill %>% pivot_longer(cols = names(proj_ill), names_to = "proj", values_to = "proj_oran")
+
+  xxx_il <- as.data.table(xxx_il)
+  xxx_il[ , IL_proj := paste0("PF_il_", ILKAYITNO)]
+
+  zzz_il <- xxx_il %>% left_join(yyy_il, by = c("IL_proj" = "proj"))
+  zzz_il$hia_proj_oran <- zzz_il$hia_oran / zzz_il$proj_oran
+
+  kontrol_il$tablo <- zzz_il
+  kontrol_il$min <- min(zzz_il$hia_proj_oran)
+  kontrol_il$max <- max(zzz_il$hia_proj_oran)
+
+  SONUCLAR$kontrol_il <- kontrol_il
 
   return(SONUCLAR)
 }
