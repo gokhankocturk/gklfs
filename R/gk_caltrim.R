@@ -2007,7 +2007,6 @@ gk_caltrim <- function(data,
   xxx_nur$hia_oran <- prop.table(xxx_nur$toplam_w)
 
   proj_nur <- proj_nutskirkent
-  # proj_nur <- proj_nur %>% select(-PF_rur_01)
   yyy_nur <- proj_nur %>% pivot_longer(cols = names(proj_nur), names_to = "proj", values_to = "proj_oran")
 
   xxx_nur <- as.data.table(xxx_nur)
@@ -2050,6 +2049,44 @@ gk_caltrim <- function(data,
   kontrol_nur$max <- max(zzz_nur$hia_proj_oran)
 
   SONUCLAR$kontrol_nur <- kontrol_nur
+
+  ##### kontrol_hhbkk #####
+  if(hhbkirkent == TRUE) {
+    proj_hhbkk <- proj_hhbkirkent %>%
+      mutate(hhsize = ifelse(hhsize >= hhbsay, hhbsay, hhsize)) %>%
+      group_by(kirkent, hhsize) %>% summarize(ADNKS = sum(ADNKS, na.rm = TRUE))
+
+    proj_hhbkk <- as.data.table(proj_hhbkk)
+
+    proj_hhbkk[, hhb_kirkent := paste0(kirkent, "-", hhsize)]
+    proj_hhbkk[, ADNKS_isim := paste0("PF_hhb_kk_",kirkent, "_", hhsize)]
+  }
+
+  if(hhbkirkent == FALSE) {
+    proj_hhbkk <- proj_hhbkirkent %>%
+      mutate(hhsize = ifelse(hhsize >= hhbsay, hhbsay, hhsize)) %>%
+      group_by(hhsize) %>% summarize(proj_oran = sum(ADNKS, na.rm = TRUE))
+
+    proj_hhbkk <- as.data.table(proj_hhbkk)
+
+    proj_hhbkk[, hhb_kirkent := hhsize]
+    proj_hhbkk[, proj := paste0("PF_hhb_", hhsize)]
+  }
+
+  kontrol_hhbkk <- list()
+  xxx_hhbkk <- ozet_veri %>% group_by(PF_hhbkirkent) %>% summarize(toplam_w = sum(w), toplam_n = n())
+  xxx_hhbkk$hia_oran <- prop.table(xxx_hhbkk$toplam_w)
+
+  yyy_hhbkk <- proj_hhbkk
+
+  zzz_hhbkk <- xxx_hhbkk %>% left_join(yyy_hhbkk, by = c("PF_hhbkirkent" = "proj"))
+  zzz_hhbkk$hia_proj_oran <- zzz_hhbkk$hia_oran / zzz_hhbkk$proj_oran
+
+  kontrol_hhbkk$tablo <- zzz_hhbkk
+  kontrol_hhbkk$min <- min(zzz_hhbkk$hia_proj_oran)
+  kontrol_hhbkk$max <- max(zzz_hhbkk$hia_proj_oran)
+
+  SONUCLAR$kontrol_hhbkk <- kontrol_hhbkk
 
   return(SONUCLAR)
 }
