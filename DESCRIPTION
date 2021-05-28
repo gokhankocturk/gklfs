@@ -20,6 +20,8 @@ Imports:
     rlang,
     stringr,
     tidyr,
-    ReGenesees
+    ReGenesees,
+    ggplot2,
+    ggthemes
 URL: https://github.com/gokhankocturk/gklfs
 BugReports: https://github.com/gokhankocturk/gklfs/issues

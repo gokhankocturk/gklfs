@@ -1971,6 +1971,7 @@ gk_caltrim <- function(data,
 
   zzz_yc <- xxx_yc %>% left_join(yyy_yc, by = c("AG" = "proj"))
   zzz_yc$hia_proj_oran <- zzz_yc$hia_oran / zzz_yc$proj_oran
+  zzz_yc$hia_proj_oran <- as.numeric(format(zzz_yc$hia_proj_oran, digits = 10))
 
   kontrol_yc$tablo <- zzz_yc
   kontrol_yc$min <- min(zzz_yc$hia_proj_oran)
@@ -1991,6 +1992,7 @@ gk_caltrim <- function(data,
 
   zzz_il <- xxx_il %>% left_join(yyy_il, by = c("IL_proj" = "proj"))
   zzz_il$hia_proj_oran <- zzz_il$hia_oran / zzz_il$proj_oran
+  zzz_il$hia_proj_oran <- as.numeric(format(zzz_il$hia_proj_oran, digits = 10))
 
   # IL_proj sutunu ortalarda bir yerdeydi. Onu en basa almak icin bu komutu kullaniyoruz.
   zzz_il <- zzz_il %>% relocate(IL_proj)
@@ -2043,6 +2045,7 @@ gk_caltrim <- function(data,
 
   zzz_nur <- xxx_nur %>% left_join(yyy_nur, by = c("NUR_proj" = "proj"))
   zzz_nur$hia_proj_oran <- zzz_nur$hia_oran / zzz_nur$proj_oran
+  zzz_nur$hia_proj_oran <- as.numeric(format(zzz_nur$hia_proj_oran, digits = 10))
 
   kontrol_nur$tablo <- zzz_nur
   kontrol_nur$min <- min(zzz_nur$hia_proj_oran)
@@ -2081,12 +2084,38 @@ gk_caltrim <- function(data,
 
   zzz_hhbkk <- xxx_hhbkk %>% left_join(yyy_hhbkk, by = c("PF_hhbkirkent" = "proj"))
   zzz_hhbkk$hia_proj_oran <- zzz_hhbkk$hia_oran / zzz_hhbkk$proj_oran
+  zzz_hhbkk <- zzz_hhbkk %>% relocate(PF_hhbkirkent, hhb_kirkent, hhsize, toplam_w, toplam_n, hia_oran, proj_oran, hia_proj_oran)
+  zzz_hhbkk$hia_proj_oran <- as.numeric(format(zzz_hhbkk$hia_proj_oran, digits = 10))
 
   kontrol_hhbkk$tablo <- zzz_hhbkk
   kontrol_hhbkk$min <- min(zzz_hhbkk$hia_proj_oran)
   kontrol_hhbkk$max <- max(zzz_hhbkk$hia_proj_oran)
 
   SONUCLAR$kontrol_hhbkk <- kontrol_hhbkk
+
+  ##### IKFA4 #####
+  kontrol_ikfa <- list()
+
+  ikfa <- ozet_veri %>% group_by(IKFA4) %>% summarize(toplam_w =sum(w), toplam_n = n())
+  ikfa <- drop_na(ikfa)
+  ikfa$w_oran <- prop.table(ikfa$toplam_w) * 100
+  ikfa$n_oran <- prop.table(ikfa$toplam_n) * 100
+
+  ikfa1 <- pivot_longer(ikfa, names_to = "grup", values_to = "oran", cols = c(w_oran, n_oran) )
+  ikfa_grafik <- ggplot(ikfa1, aes(x = IKFA4, y = oran/100, fill = grup, label = round(oran, 2))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Faktorlu - Yalin Karsilastirmasi (%)", x = "IKFA4", y = "ORAN", caption = "HIA - Iktisadi Faaliyet") +
+    theme_economist() + guides(fill = guide_legend("Tahmin")) +
+    theme(legend.position = "bottom") +
+    geom_text(position = position_dodge(width = 0.8), vjust = -0.2) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    scale_fill_discrete(name = "Gokhan", labels = c("Yalin", "Faktorlu"))
+
+  kontrol_ikfa$tablo <- ikfa
+  kontrol_ikfa$grafik <- ikfa_grafik
+
+  SONUCLAR$kontrol_ikfa <- kontrol_ikfa
+
 
   return(SONUCLAR)
 }
