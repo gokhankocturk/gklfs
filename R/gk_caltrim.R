@@ -3,6 +3,11 @@
 #'
 #' @param data Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti.
 #' gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.
+#' @param proj_yascins Yas - Cinsiyet projekte oranlari (tek satir halinde)
+#' @param proj_il IL projekte oranlari (tek satir halinde)
+#' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari (tek satir halinde)
+#' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
+#' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)
 #' @param calyap Kalibrasyon yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
 #' @param calsay Kalibrasyon dongu sayisi
 #' @param trimyap Trim yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
@@ -29,9 +34,28 @@
 #' @param kirnufus Projekte KIR toplam nufusu
 #' @param kentnufus Projekte KENT toplam nufusu
 #'
-#' @return Kalibrasyon sonrasi elde edilen agirliklarla birlikte temel degiskenlerin yer
-#' aldigi veri setini cikti olarak verir. Bu veri seti uzerinden issizlik, istihdam oranlari
-#' hesaplanabilir.
+#' @return Kalibrasyon sonrasi elde edilen sonuclari "liste" formatinda verir.
+#' Liste icerisinde;
+#' 1) Nihai agirliklarin ve temel degiskenlerin oldugu "veri" referansiyla erisim saglanan ozet veri
+#' seti,
+#' 2) Yas * Cinsiyet bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_yc"
+#' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+#' maksimum degerleri,
+#' 3) IBBS2 * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_nur"
+#' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+#' maksimum degerleri,
+#' 4) HHB * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_hhbkk"
+#' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+#' maksimum degerleri,
+#' 5) IL bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_il"
+#' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+#' maksimum degerleri,
+#' 6) Iktisadi faaliyetler (IKFA4) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_ikfa"
+#' referansiyla erisim saglanan kontrol tablosu ve grafikler,
+#' 7) Issizlik durumu (DURUM) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_durum"
+#' referansiyla erisim saglanan kontrol tablosu ve grafikler
+#' yer almaktadir.
+
 #' @export
 #'
 #' @examples
@@ -2116,6 +2140,43 @@ gk_caltrim <- function(data,
 
   SONUCLAR$kontrol_ikfa <- kontrol_ikfa
 
+  ##### DURUM #####
+  kontrol_durum <- list()
+
+  durum <- ozet_veri %>% group_by(DURUM) %>% summarize(toplam_w =sum(w), toplam_n = n())
+  durum$w_oran <- prop.table(durum$toplam_w) * 100
+  durum$n_oran <- prop.table(durum$toplam_n) * 100
+
+  durum1 <- pivot_longer(durum, names_to = "grup", values_to = "oran", cols = c(w_oran, n_oran) )
+
+  grafik_durum <- ggplot(durum1, aes(x = DURUM, y = oran/100, fill = grup, label = round(oran, 2))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Faktorlu - Yalin Karsilastirmasi (%)", x = "DURUM", y = "ORAN", caption = "HIA - Durum") +
+    theme_economist() +
+    theme(legend.position = "bottom") +
+    geom_text(position = position_dodge(width = 0.8), vjust = -0.2) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    scale_fill_discrete(name = "DURUM", labels = c("Yalin", "Faktorlu"))
+
+  durum2 <- durum %>% filter(row_number() < 3)
+  durum2$w_iss_oran <- prop.table(durum2$toplam_w) * 100
+  durum2$n_iss_oran <- prop.table(durum2$toplam_n) * 100
+
+  durum3 <- data.table(durum = c("Yalin", "Faktorlu"), oran = c(durum2$n_iss_oran[2], durum2$w_iss_oran[2]))
+  grafik_issizlik <- ggplot(durum3, aes(x = durum, y = oran/100, fill = durum, label = round(oran, 2))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Faktorlu - Yalin Karsilastirmasi (%)", x = "Issizlik Orani", y = "ORAN", caption = "HIA - İssizlik Orani") +
+    theme_economist() +
+    theme(legend.position = "bottom") +
+    geom_text(position = position_dodge(width = 0.8), vjust = -0.2) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    scale_fill_discrete(name = "DURUM", labels = c("Faktorlu", "Yalin"))
+
+  kontrol_durum$tablo <- durum
+  kontrol_durum$grafik_durum <- grafik_durum
+  kontrol_durum$grafik_issizlik <- grafik_issizlik
+
+  SONUCLAR$kontrol_durum <- kontrol_durum
 
   return(SONUCLAR)
 }

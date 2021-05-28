@@ -27,6 +27,15 @@ gk_caltrim(
 \item{data}{Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti.
 gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.}
 
+\item{proj_yascins}{Yas - Cinsiyet projekte oranlari (tek satir halinde)}
+
+\item{proj_il}{IL projekte oranlari (tek satir halinde)}
+
+\item{proj_nutskirkent}{NUTS2 - Kirkent projekte oranlari (tek satir halinde)}
+
+\item{proj_hhbkirkent}{HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
+kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)}
+
 \item{calyap}{Kalibrasyon yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.}
 
 \item{calsay}{Kalibrasyon dongu sayisi}
@@ -64,9 +73,29 @@ NUTS2 * KIRKENT crossunda kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir
 \item{kentnufus}{Projekte KENT toplam nufusu}
 }
 \value{
-Kalibrasyon sonrasi elde edilen agirliklarla birlikte temel degiskenlerin yer
-aldigi veri setini cikti olarak verir. Bu veri seti uzerinden issizlik, istihdam oranlari
-hesaplanabilir.
+Kalibrasyon sonrasi elde edilen sonuclari "liste" formatinda verir.
+Liste icerisinde;
+\enumerate{
+\item Nihai agirliklarin ve temel degiskenlerin oldugu "veri" referansiyla erisim saglanan ozet veri
+seti,
+\item Yas * Cinsiyet bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_yc"
+referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+maksimum degerleri,
+\item IBBS2 * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_nur"
+referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+maksimum degerleri,
+\item HHB * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_hhbkk"
+referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+maksimum degerleri,
+\item IL bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_il"
+referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
+maksimum degerleri,
+\item Iktisadi faaliyetler (IKFA4) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_ikfa"
+referansiyla erisim saglanan kontrol tablosu ve grafikler,
+\item Issizlik durumu (DURUM) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_durum"
+referansiyla erisim saglanan kontrol tablosu ve grafikler
+yer almaktadir.
+}
 }
 \description{
 Kalibrasyon & Trim
