@@ -2086,7 +2086,7 @@ gk_caltrim <- function(data,
     proj_hhbkk <- as.data.table(proj_hhbkk)
 
     proj_hhbkk[, hhb_kirkent := paste0(kirkent, "-", hhsize)]
-    proj_hhbkk[, ADNKS_isim := paste0("PF_hhb_kk_",kirkent, "_", hhsize)]
+    proj_hhbkk[, proj := paste0("PF_hhb_kk_",kirkent, "_", hhsize)]
   }
 
   if(hhbkirkent == FALSE) {
