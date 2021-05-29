@@ -1944,7 +1944,7 @@ gk_caltrim <- function(data,
 
   # Birinci kalibrasyon islemleri bittikten sonra PROJEKTE nufusa tutturmak icin "duzfakto_carpan_kir" ve
   # "duzfakto_carpan_kent" katsayilarini hesapliyoruz. KIR ve KENT PROJEKTE nufuslarini tutan katsayilarla
-  # sonuclari acikliyoruz..
+  # sonuclari acikliyoruz.
 
   a <- pers_h %>% group_by(KIR_KENT) %>% summarize(toplam_w = sum(w))
 
