@@ -2082,7 +2082,7 @@ gk_caltrim <- function(data,
   if(hhbkirkent == TRUE) {
     proj_hhbkk <- proj_hhbkirkent %>%
       mutate(hhsize = ifelse(hhsize >= hhbsay, hhbsay, hhsize)) %>%
-      group_by(kirkent, hhsize) %>% summarize(ADNKS = sum(ADNKS, na.rm = TRUE))
+      group_by(kirkent, hhsize) %>% summarize(proj_oran = sum(ADNKS, na.rm = TRUE))
 
     proj_hhbkk <- as.data.table(proj_hhbkk)
 
