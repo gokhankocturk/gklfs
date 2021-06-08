@@ -27,7 +27,7 @@
 #' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari (tek satir halinde)
 #' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
 #' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak) \cr
-#' \link{gk_caltrim}
+#' \link{https://www.google.com}
 
 #'
 #' @export
