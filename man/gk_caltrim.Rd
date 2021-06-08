@@ -44,7 +44,7 @@ kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)}
 
 \item{trimsay}{Trim dongu sayisi}
 
-\item{hhbsay}{Hanehalki buyuklugune gore olusturulacak grup sayisi. Ornegin
+\item{hhbsay}{HHHanehalki buyuklugune gore olusturulacak grup sayisi. Ornegin
 "hhbsay = 4" girildiginde hanehalki buyuklugu gruplari 1, 2, 3, 4+ seklinde olusacaktir.
 gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli
 olduğunda dummy uyusmazligi nedeniyle program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
