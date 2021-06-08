@@ -41,7 +41,8 @@ fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde}
 \item{proj_nutskirkent}{NUTS2 - Kirkent projekte oranlari (tek satir halinde)}
 
 \item{proj_hhbkirkent}{HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
-kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)}
+kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak) \cr
+\link{gk_caltrim}}
 
 \item{cinsiyet}{Cinsiyet degiskeni icin kullanilacak sutun adi (veri tipi numeric: 1, 2 seklinde)}
 
