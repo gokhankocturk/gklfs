@@ -42,7 +42,7 @@ fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde}
 
 \item{proj_hhbkirkent}{HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
 kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak) \cr
-\link{gk_caltrim}}
+\link{https://www.google.com}}
 
 \item{cinsiyet}{Cinsiyet degiskeni icin kullanilacak sutun adi (veri tipi numeric: 1, 2 seklinde)}
 
