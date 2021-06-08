@@ -1,17 +1,19 @@
 #' Veri Setinin Duzenlenmesi
 #'
-#' @param data Duzenlenmemis HIA veri seti. Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
-#' degiskenlerde duzenlemeler yapilarak dummy degiskenler olusturulmaktadir. Ayrica "gk_caltrim"
-#' fonksiyonunda kalibrasyon icin kullanilmak uzere projekte populasyonlari da veri setine eklenmektedir.
-#' NOT: Veri setinde yer alacak degiskenlerin standart bir formatta olmasi gerekmektedir. Ornegin;
-#' ILKAYITNO: veri tipi character ; 01, 02, 03 seklinde
-#' IBBS_1: veri tipi character ; TR1, TR2 seklinde
-#' IBBS_2: veri tipi character ; TR10, TR21 seklinde
-#' KIR_KENT: veri tipi numeric ; 1, 2 seklinde
-#' CINSIYET: veri tipi numeric ; 1, 2 seklinde
-#' FAKTOR: veri tipi numeric
-#' HHB: veri tipi numeric ; 1, 2 ,3 seklinde
-#' duzfakto: veri tipi numeric
+#' @param data Duzenlenmemis HIA veri seti. \cr
+#' Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
+#' degiskenlerde duzenlemeler yapilarak dummy degiskenler olusturulmaktadir. \cr
+#' Ayrica "gk_caltrim" fonksiyonunda, kalibrasyon icin kullanilmak uzere projekte populasyonlari da veri setine eklenmektedir. \cr
+#' NOT: Veri setinde yer alacak degiskenlerin standart bir formatta olmasi gerekmektedir. \cr
+#' Ornegin; \cr
+#' ILKAYITNO: veri tipi character ; 01, 02, 03 seklinde \cr
+#' IBBS_1: veri tipi character ; TR1, TR2 seklinde \cr
+#' IBBS_2: veri tipi character ; TR10, TR21 seklinde \cr
+#' KIR_KENT: veri tipi numeric ; 1, 2 seklinde \cr
+#' CINSIYET: veri tipi numeric ; 1, 2 seklinde \cr
+#' FAKTOR: veri tipi numeric \cr
+#' HHB: veri tipi numeric ; 1, 2 ,3 seklinde \cr
+#' duzfakto: veri tipi numeric \cr
 #' fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde
 #' @param cinsiyet Cinsiyet degiskeni icin kullanilacak sutun adi (veri tipi numeric: 1, 2 seklinde)
 #' @param birimno Birimno sutun adi (veri tipi numeric: 325069, 325070 seklinde)

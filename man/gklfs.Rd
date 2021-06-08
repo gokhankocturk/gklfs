@@ -10,13 +10,13 @@ Pakette 4 farkli fonksiyon bulunmaktadir.
 gk_arrange, gk_check, gk_caltrim ve gk_variance
 }
 \section{gklfs fonksiyonlari}{
-
-gk_arrange: Kalibrasyon ve trim islemlerine girecek veri setinin duzenlenmesi,
-gk_check: Veri setinde eksik (missing) veya yanlis veri olup olmadiginin kontrol edilmesi,
+ \cr
+gk_arrange: Kalibrasyon ve trim islemlerine girecek veri setinin duzenlenmesi, \cr
+gk_check: Veri setinde eksik (missing) veya yanlis veri olup olmadiginin kontrol edilmesi, \cr
 gk_caltrim: Kullanici tarafindan belirlenen kriterlere gore kalibrasyon ve trimming islemlerinin yapilarak
-nihai agirliklarin elde edilmesi,
+nihai agirliklarin elde edilmesi, \cr
 gk_variance: Kullanici tarafindan girilen modele gore Taylor Linearization yontemiyle varyans, CV ve deff
-degerlerinin hesaplanmasi
+degerlerinin hesaplanmasi \cr
 amaciyla kullanilmaktadir.
 }
 
