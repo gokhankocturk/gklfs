@@ -1,37 +1,42 @@
 #' Veri Setinin Duzenlenmesi
 #'
 #' @param data Duzenlenmemis HIA veri seti. \cr
-#' Bu veri seti kullanilarak yasgrubu, cinsiyet, hhb, IBBS_2 gibi
+#' Bu veri seti uzerinde \strong{yasgrubu, cinsiyet, hhb, IBBS_2} gibi
 #' degiskenlerde duzenlemeler yapilarak dummy degiskenler olusturulmaktadir. \cr
-#' Ayrica "gk_caltrim" fonksiyonunda, kalibrasyon icin kullanilmak uzere projekte populasyonlari da veri setine eklenmektedir. \cr
-#' NOT: Veri setinde yer alacak degiskenlerin standart bir formatta olmasi gerekmektedir. \cr
+#' Ayrica \strong{"gk_caltrim"} fonksiyonunda, kalibrasyon icin kullanilmak uzere projekte populasyonlari da veri setine eklenmektedir. \cr
+#' \cr
+#' \emph{NOT:} Veri setinde yer alacak degiskenlerin standart bir formatta olmasi gerekmektedir. \cr
+#' \cr
 #' Ornegin; \cr
-#' ILKAYITNO: veri tipi character ; 01, 02, 03 seklinde \cr
-#' IBBS_1: veri tipi character ; TR1, TR2 seklinde \cr
-#' IBBS_2: veri tipi character ; TR10, TR21 seklinde \cr
-#' KIR_KENT: veri tipi numeric ; 1, 2 seklinde \cr
-#' CINSIYET: veri tipi numeric ; 1, 2 seklinde \cr
-#' FAKTOR: veri tipi numeric \cr
-#' HHB: veri tipi numeric ; 1, 2 ,3 seklinde \cr
-#' duzfakto: veri tipi numeric \cr
-#' fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde
-#' @param cinsiyet Cinsiyet degiskeni icin kullanilacak sutun adi (veri tipi numeric: 1, 2 seklinde)
-#' @param birimno Birimno sutun adi (veri tipi numeric: 325069, 325070 seklinde)
-#' @param yas Yas sutun adi (veri tipi numeric: 26, 35 seklinde)
+#' \itemize{
+#' \item ILKAYITNO: veri tipi character ; 01, 02, 03 seklinde
+#' \item IBBS_1: veri tipi character ; TR1, TR2 seklinde
+#' \item IBBS_2: veri tipi character ; TR10, TR21 seklinde
+#' \item KIR_KENT: veri tipi numeric ; 1, 2 seklinde
+#' \item CINSIYET: veri tipi numeric ; 1, 2 seklinde
+#' \item FAKTOR: veri tipi numeric
+#' \item HHB: veri tipi numeric ; 1, 2 ,3 seklinde
+#' \item duzfakto: veri tipi numeric
+#' \item fk_fkiml: veri tipi numeric ; 1, 2, 3 seklinde
+#' }
+
+#'
+#' @param cinsiyet Cinsiyet degiskeni icin kullanilacak sutun adi \emph{(veri tipi numeric: 1, 2 seklinde)}
+#' @param birimno Birimno sutun adi \emph{(veri tipi numeric: 325069, 325070 seklinde)}
+#' @param yas Yas sutun adi \emph{(veri tipi numeric: 26, 35 seklinde)}
 #' @param hhbsay Hanehalki buyuklugu degiskeninin kac grup olacagini belirtmektedir. Ornegin "hhbsay = 4"
 #' degeri kullanildiginda kalibrasyon islemleri 1, 2, 3 ve 4+ hanehalki buyuklugu gruplarinda yapilacaktir.
 #' @param hhbkirkent HHB * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 #' sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini almaktadir.
-#' @param proj_yascins Yas - Cinsiyet projekte oranlari (tek satir halinde)
-#' @param proj_il IL projekte oranlari (tek satir halinde)
-#' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari (tek satir halinde)
-#' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
-#' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak) \cr
-#' \url{https://www.google.com}
+#' @param proj_yascins Yas - Cinsiyet projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_il IL projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari \emph{(Kirkent ayrimi olacaksa HHB*2,
+#' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)} \cr
 
 #'
 #' @export
-#' @return "gk_caltrim" fonksiyonuna girdi olacak duzenlenmis PERS dosyasini cikti olarak verir.
+#' @return \strong{"gk_caltrim"} fonksiyonuna girdi olacak, duzenlenmis PERS dosyasini cikti olarak verir.
 #'
 #' @examples
 #' @import data.table

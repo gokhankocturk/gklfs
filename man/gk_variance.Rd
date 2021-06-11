@@ -38,7 +38,9 @@ gk_variance(
 \item{ilkayitno}{Ilkayitno degiskeni}
 
 \item{calmodel}{Kalibrasyon ve trimmingde kullandigimiz model. \cr
+\cr
 Ornegin "KIR_KENT:IBBS_2 + YASGR:CINSIYET + HHB - 1" \cr
+\cr
 Burada tanimlanan modele gore standart hata degerleri ve ona bagli olarak da CV ve deff degerleri az da olsa
 degismektedir. Bu sebeple, modelin dogru tanimlanmasi onemlidir.}
 

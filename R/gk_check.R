@@ -1,7 +1,7 @@
 #' Veri Setinin Kontrolu
 #'
-#' @param data Kontrol edilecek veri seti. Kalibrasyon oncesinde DUZFAKTO, CINSIYET, ILKAYITNO,
-#' NUTS2*KIRKENT ve HHB_KIRKENT degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
+#' @param data Kontrol edilecek veri seti. Kalibrasyon oncesinde \strong{DUZFAKTO, CINSIYET, ILKAYITNO,
+#' NUTS2*KIRKENT ve HHB_KIRKENT} degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
 #' kontrol etmektedir.
 #'
 #' @return Kontrol sonrasinda TRUE veya FALSE ciktisini verir. Ekranda kontrol sonuclarini mesajla gosterir.

@@ -7,8 +7,8 @@
 gk_check(data)
 }
 \arguments{
-\item{data}{Kontrol edilecek veri seti. Kalibrasyon oncesinde DUZFAKTO, CINSIYET, ILKAYITNO,
-NUTS2*KIRKENT ve HHB_KIRKENT degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
+\item{data}{Kontrol edilecek veri seti. Kalibrasyon oncesinde \strong{DUZFAKTO, CINSIYET, ILKAYITNO,
+NUTS2*KIRKENT ve HHB_KIRKENT} degiskenlerinde yanlis veya missing (NA) veri olup olmadigini
 kontrol etmektedir.}
 }
 \value{

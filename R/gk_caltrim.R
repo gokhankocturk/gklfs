@@ -1,31 +1,36 @@
 #' Kalibrasyon & Trim
 #'
 #'
-#' @param data Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti.
-#' gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.
-#' @param proj_yascins Yas - Cinsiyet projekte oranlari (tek satir halinde)
-#' @param proj_il IL projekte oranlari (tek satir halinde)
-#' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari (tek satir halinde)
-#' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari (Kirkent ayrimi olacaksa HHB*2,
-#' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak)
+#' @param data Duzenlenmis, dummyleri olusturulmus, projekte oranlari eklenmis veri seti. \cr
+#' "gk_arrange" fonksiyonundan elde edilen veri seti burada kullanilmalidir.
+#' @param proj_yascins Yas - Cinsiyet projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_il IL projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_nutskirkent NUTS2 - Kirkent projekte oranlari \emph{(tek satir halinde)}
+#' @param proj_hhbkirkent HHB - Kirkent ADNKS oranlari \emph{(Kirkent ayrimi olacaksa HHB*2,
+#' kirkent ayrimi olmayacaksa HHB grup sayisi kadar satir olacak sekilde)}
 #' @param calyap Kalibrasyon yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
 #' @param calsay Kalibrasyon dongu sayisi
 #' @param trimyap Trim yapilacaksa TRUE, yapilmayacaksa FALSE degerini alir.
 #' @param trimsay Trim dongu sayisi
 #' @param hhbsay Hanehalki buyuklugune gore olusturulacak grup sayisi. \cr
-#' Ornegin #' "hhbsay = 4" girildiginde hanehalki buyuklugu gruplari 1, 2, 3, 4+ seklinde olusacaktir.
-#' gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli
-#' olduğunda dummy uyusmazligi nedeniyle program hata verecektir. \cr
-#' O yuzden veri setinin duzenlenmesi (gk_arrange) ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.
+#' \cr
+#' Ornegin "hhbsay = 4" girildiginde hanehalki buyuklugu gruplari 1, 2, 3, 4+ seklinde olusacaktir.
+#' \strong{gk_arrange"} fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli
+#' oldugunda dummy uyusmazligi nedeniyle program hata verecektir. \cr
+#' \cr
+#' O yuzden veri setinin duzenlenmesi (gk_arrange) ve agirliklandirilmasi (gk_caltrim) asamalarinda,
+#' ortak argumanlar ayni degerleri almalidir.
 #' @param hhbkirkent HHB * KIRKENT crossunda kalibrasyon yapilmasi isteniyorsa TRUE,
 #' sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini alir. \cr
-#' "gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli olduğunda dummy uyusmazligi
+#' \cr
+#' "gk_arrange" fonksiyonunda da ayni arguman bulunuyor. Ikisi birbirinden farkli oldugunda dummy uyusmazligi
 #' nedeniyle program hata verecektir. \cr
+#' \cr
 #' Ornegin "gk_arrange" fonksiyonu icerisinde "hhbkirkent = TRUE"
 #' olarak tanimlandiginda dummyler "D_hhb_kk_1_2" seklinde olusturulurken "gk_caltrim" fonksiyonu
 #' icerisinde "hhbkirkent = FALSE" olarak tanimlanirsa dummyler "D_hhb_1" seklinde olusacagi icin
 #' program hata verecektir. O yuzden veri setinin duzenlenmesi (gk_arrange)
-#' ve agirliklandirilmasi (gk_caltrim) asamalarinda ayni degeri almalidir.
+#' ve agirliklandirilmasi (gk_caltrim) asamalarinda, ortak argumanlar ayni degerleri almalidir.
 #' @param yascinsiyet YAS * CINSIYET'e gore kalibrasyon yapilmasi isteniyorsa TRUE,
 #' YAS * CINSIYET'e gore kalibrasyon yapilmasi istenmiyorsa FALSE degerini alir.
 #' @param il IL'e gore kalibrasyon yapilmasi isteniyorsa TRUE, IL'e gore kalibrasyon
@@ -37,24 +42,27 @@
 #'
 #' @return Kalibrasyon sonrasi elde edilen sonuclari "liste" formatinda verir. \cr
 #' Liste icerisinde; \cr
-#' 1) Nihai agirliklarin ve temel degiskenlerin oldugu "veri" referansiyla erisim saglanan ozet veri
-#' seti, \cr
-#' 2) Yas * Cinsiyet bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_yc"
+#' \enumerate{
+#' \item Nihai agirliklarin ve temel degiskenlerin oldugu "veri" referansiyla erisim saglanan ozet veri
+#' seti,
+#' \item Yas * Cinsiyet bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_yc"
 #' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
-#' maksimum degerleri, \cr
-#' 3) IBBS2 * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_nur"
+#' maksimum degerleri,
+#' \item IBBS2 * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_nur"
 #' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
-#' maksimum degerleri, \cr
-#' 4) HHB * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_hhbkk"
+#' maksimum degerleri,
+#' \item HHB * KIRKENT bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_hhbkk"
 #' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
-#' maksimum degerleri, \cr
-#' 5) IL bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_il"
+#' maksimum degerleri,
+#' \item IL bazinda projekte ve hesaplanan oranlarin karsilastirildigi "kontrol_il"
 #' referansiyla erisim saglanan kontrol tablosu ve hesaplanan / projekte oranlarinin minimum ve
-#' maksimum degerleri, \cr
-#' 6) Iktisadi faaliyetler (IKFA4) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_ikfa"
-#' referansiyla erisim saglanan kontrol tablosu ve grafikler, \cr
-#' 7) Issizlik durumu (DURUM) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_durum"
-#' referansiyla erisim saglanan kontrol tablosu ve grafikler \cr
+#' maksimum degerleri,
+#' \item Iktisadi faaliyetler (IKFA4) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_ikfa"
+#' referansiyla erisim saglanan kontrol tablosu ve grafikler,
+#' \item Issizlik durumu (DURUM) bazinda yalin ve hesaplanan degerlerin yer aldigi "kontrol_durum"
+#' referansiyla erisim saglanan kontrol tablosu ve grafikler
+#' }
+#' \cr
 #' yer almaktadir.
 
 #' @export
