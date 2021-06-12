@@ -1,0 +1,21 @@
+---
+title: "gk_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gk_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+COK ONEMLI ACIKLAMALAR
+
+```{r setup}
+library(gklfs)
+```

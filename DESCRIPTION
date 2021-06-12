@@ -24,12 +24,16 @@ RoxygenNote: 7.1.1
 Imports: 
     data.table,
     dplyr,
+    ggplot2,
+    ggthemes,
     magrittr,
     rlang,
-    stringr,
-    tidyr,
     ReGenesees,
-    ggplot2,
-    ggthemes
+    stringr,
+    tidyr
 URL: https://github.com/gokhankocturk/gklfs
 BugReports: https://github.com/gokhankocturk/gklfs/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
