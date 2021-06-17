@@ -66,7 +66,8 @@
 #' yer almaktadir.
 
 #' @export
-#'
+#' @import ggplot2
+#' @import ggthemes
 #' @examples
 
 

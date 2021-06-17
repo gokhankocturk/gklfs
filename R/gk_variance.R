@@ -20,7 +20,7 @@
 #'
 #' @return IBBS2 bazinda toplam, ortalama, CV, standart hata, guven araliklari ve deff degerlerini cikti olarak verir.
 #' @export
-#'
+#' @import ReGenesees
 #' @examples
 gk_variance <- function(data,
                         yas = "fk_yas",
