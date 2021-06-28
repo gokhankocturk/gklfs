@@ -34,6 +34,21 @@ gk_variance <- function(data,
                         calmodel = "KIR_KENT:IBBS_2 - 1",
                         varyans = "Total"
 ) {
+  # "check()" fonkiyonunu calistirdigimizda DURUM, iss_yeni ve sonuclar degiskenleri icin
+  # "no visible binding for global variable 'DURUM'" seklinde bir uyari veriyor. Bu durumu duzeltmek icin
+  # internette 2 farkli yol oneriliyor.
+
+  # Birincisi : Asagidaki gibi fonksiyonun basinda butun degiskenlere NULL degerini atamak
+  # Ikincisi : utils::globalVariables(c("DURUM", "iss_yeni", "sonuclar")) komutunu yazmak.
+
+  # "gk_variance" fonksiyonumuzda sorun yaratan sadece bu 3 degisken oldugu icin 2 yontemi de uygulayabiliriz.
+  # Fakat diger "gk_arrange", "gk_caltrim" gibi fonksiyonlarimizin icerisinde olusturdugumuz "D_urb_01", "D_urb_02", ... gibi
+  # yuzlerce degisken oldugu icin burada aciklanan 2 yontemden herhangi birini uygulamak cok zaman alacak o yuzden
+  # diger fonksiyonlarda, asagidaki gibi NULL atama islemini yapmadim.
+  # Bunun nasil cozuleceginin arastirilmasi gerekiyor.
+  DURUM <- iss_yeni <- sonuclar <- NULL
+
+
   veri <- data
   veri$iss_yeni <- NA
   veri$iss_yeni <- as.numeric(veri$iss_yeni)
