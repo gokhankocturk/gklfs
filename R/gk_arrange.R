@@ -36,7 +36,8 @@
 
 #'
 #' @export
-#' @return \strong{"gk_caltrim"} fonksiyonuna girdi olacak, duzenlenmis PERS dosyasini cikti olarak verir.
+#' @return \strong{"gk_caltrim"} fonksiyonuna girdi olacak, duzenlenmis PERS dosyasini cikti olarak verir. \cr
+#' Detayli aciklama icin \link{gk_caltrim} fonksiyonunu inceleyiniz...
 #'
 #' @examples
 #' @import data.table

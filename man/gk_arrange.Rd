@@ -60,7 +60,8 @@ degeri kullanildiginda kalibrasyon islemleri 1, 2, 3 ve 4+ hanehalki buyuklugu g
 sadece HHB bazinda kalibrasyon yapilmasi isteniyorsa FALSE degerini almaktadir.}
 }
 \value{
-\strong{"gk_caltrim"} fonksiyonuna girdi olacak, duzenlenmis PERS dosyasini cikti olarak verir.
+\strong{"gk_caltrim"} fonksiyonuna girdi olacak, duzenlenmis PERS dosyasini cikti olarak verir. \cr
+Detayli aciklama icin \link{gk_caltrim} fonksiyonunu inceleyiniz...
 }
 \description{
 Veri Setinin Duzenlenmesi
