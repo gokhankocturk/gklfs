@@ -90,7 +90,7 @@ gk_variance <- function(data,
   eval(parse(text = paste0(
     "sonuclar <- svystatTM(hia_ext,
                          y = ~iss_yeni,
-                         ~", ibbs2,
+                         ~", !!sym(ibbs2),
                          "estimator = c('", varyans, "'),
                          vartype = c('se', 'cv', 'cvpct', 'var'),
                          conf.int = TRUE,
