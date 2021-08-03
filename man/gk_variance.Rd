@@ -42,7 +42,12 @@ gk_variance(
 Ornegin "KIR_KENT:IBBS_2 + YASGR:CINSIYET + HHB - 1" \cr
 \cr
 Burada tanimlanan modele gore standart hata degerleri ve ona bagli olarak da CV ve deff degerleri az da olsa
-degismektedir. Bu sebeple, modelin dogru tanimlanmasi onemlidir.}
+degismektedir. Bu sebeple, modelin dogru tanimlanmasi onemlidir. \cr
+"ibbs2" argumani ile hangi duzeyde varyans hesaplamak istedigimizi belirtiyoruz. Dolayisiyla "ibbs2" argumani ile
+"calmodel" argumaninda tanimlanan modelin birbirine uyumlu olmasi gerekmektedir. \cr
+Ornegin; "ibbs2 = IBBS_1" yazarak IBBS1 duzeyinde varyans hesaplamak istedigimizi belirtirken modeli de
+"calmodel="KIR_KENT:IBBS_1-1" seklinde, yani ayni IBBS duzeyinde kurmaliyiz. IBBS duzeyimiz ve modelimiz
+farkli olursa hata verecektir.}
 
 \item{varyans}{Toplama iliskin varyans hesabi icin "Total", ortalamaya iliskin varyans hesabi icin "Mean" degerini alir.}
 }

@@ -16,7 +16,8 @@ gk_check: Veri setinde eksik (missing) veya yanlis veri olup olmadiginin kontrol
 gk_caltrim: Kullanici tarafindan belirlenen kriterlere gore kalibrasyon ve trimming islemlerinin yapilarak
 nihai agirliklarin elde edilmesi, \cr
 gk_variance: Kullanici tarafindan girilen modele gore Taylor Linearization yontemiyle varyans, CV ve deff
-degerlerinin hesaplanmasi \cr
+degerlerinin hesaplanmasiii \cr
+\cr
 amaciyla kullanilmaktadir.
 }
 
